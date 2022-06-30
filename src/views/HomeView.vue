@@ -1,18 +1,49 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="card col-md-8">
+      <Bar :chart-data="chartData" />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+// import { Bar } from 'vue-chartjs'
+import { Bar } from "vue-chartjs/legacy";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
 
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-}
+  name: "BarChart",
+  components: { Bar },
+  data() {
+    return {
+      chartData: {
+        labels: ["Enero", "Febrero", "Marzo"],
+        datasets: [
+          {
+            label: "Data One",
+            backgroundColor: "#1B35DA",
+            data: [40, 20, 12],
+          },
+        ],
+      },
+    };
+  },
+};
 </script>
