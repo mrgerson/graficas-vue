@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import axios from "axios";
+import moment from "moment";
 // import { Bar } from "vue-chartjs";
 import { Bar } from "vue-chartjs/legacy";
 import {
@@ -73,6 +75,12 @@ export default {
   },
   data() {
     return {
+      arrPositivo: [],
+      arrNegativo: [],
+      arrHospitalizacion: [],
+      arrEnUsiActualmente: [],
+      arrOnVentilador: [],
+      arrMuertes: [],
       chartData: {
         labels: ["Enero", "Febrero", "Marzo"],
         datasets: [{ data: [40, 20, 12], backgroundColor: "#1B35DA" }],
@@ -81,6 +89,36 @@ export default {
         responsive: true,
       },
     };
+  },
+  async created() {
+            //console.log(response.data);
+        try {
+          const res = await axios.get("https://api.covidtracking.com/v1/us/daily.json")
+          await res.data.forEach(d => {
+              const date = moment(d.date, "YYYYMMDD").format("MM/DD/YY");
+
+              const {
+                positive,
+                negative,
+                hospitalizedCurrently,
+                inIcuCurrently,
+                onVentilatorCurrently,
+                death,
+              } = d;
+            
+              this.arrPositivo.push({ date, total: positive });
+              this.arrNegativo.push({ date, total: negative });
+              this.arrHospitalizacion.push({ date, total: hospitalizedCurrently });
+              this.arrEnUsiActualmente.push({ date, total: inIcuCurrently });
+              this.arrOnVentilador.push({ date, total: onVentilatorCurrently });
+              this.arrMuertes.push({ date, total: death });
+
+              console.log(this.arrNegativo);
+
+          })
+        } catch (error) {
+          console.log(error)
+        }
   },
 };
 </script>
