@@ -31,6 +31,18 @@
              <li class="nav-item">
                <router-link class="nav-link active" aria-current="page" to="/areapolar">Area polar</router-link>
             </li>
+             <li class="nav-item">
+               <router-link class="nav-link active" aria-current="page" to="/barra">Barra</router-link>
+            </li>
+             <li class="nav-item">
+               <router-link class="nav-link active" aria-current="page" to="/burbuja">Burbuja</router-link>
+            </li>
+             <li class="nav-item">
+               <router-link class="nav-link active" aria-current="page" to="/radar">Radar</router-link>
+            </li>
+             <li class="nav-item">
+               <router-link class="nav-link active" aria-current="page" to="/dispersion">Dispersión</router-link>
+            </li>
           </ul>
         </div>
       </div>

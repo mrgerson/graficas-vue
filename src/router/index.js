@@ -36,6 +36,30 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "api" */ '../views/AreaPolar.vue')
     },
+    {
+        path: '/barra',
+        name: 'barra',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Bar.vue')
+    },
+    {
+        path: '/burbuja',
+        name: 'burbuja',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Bubble.vue')
+    },
+    {
+        path: '/radar',
+        name: 'radar',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Radar.vue')
+    },
+    {
+        path: '/dispersion',
+        name: 'dispersion',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Scatter.vue')
+    },
 
 ]
 
