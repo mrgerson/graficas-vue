@@ -12,6 +12,7 @@
           :chartData="arrPositivo"
           :options="chartOptions"
           :label="Positivo"
+          :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
     </div>
@@ -22,6 +23,7 @@
           :chartData="arrNegativo"
           :options="chartOptions"
           :label="Negativo"
+          :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
     </div>
@@ -32,6 +34,7 @@
           :chartData="arrHospitalizacion"
           :options="chartOptions"
           :label="Hospitalizados"
+          :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
     </div>
@@ -42,6 +45,7 @@
           :chartData="arrEnUsiActualmente"
           :options="chartOptions"
           :label="inIcuCurrently"
+          :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
     </div>
@@ -52,6 +56,7 @@
           :chartData="arrOnVentilador"
           :options="chartOptions"
           :label="onVentilatorCurrently"
+          :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
     </div>
@@ -62,6 +67,7 @@
           :chartData="arrMuertes"
           :options="chartOptions"
           :label="death"
+          :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
     </div>
@@ -103,6 +109,12 @@ export default {
   components: { Bar, LineaChart },
   data() {
     return {
+      positiveChartColors: {
+        borderColor: "#077187",
+        pointBorderColor: "#0E1428",
+        pointBackgroundColor: "#372772",
+        BackgroundColor: "#74A57F",
+      },
       arrPositivo: [],
       arrNegativo: [],
       arrHospitalizacion: [],
