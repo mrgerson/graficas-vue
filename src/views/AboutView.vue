@@ -11,7 +11,7 @@
         <linea-chart
           :chartData="arrPositivo"
           :options="chartOptions"
-          :label="Positivo"
+          label="Positivo"
           :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
@@ -22,7 +22,7 @@
         <linea-chart
           :chartData="arrNegativo"
           :options="chartOptions"
-          :label="Negativo"
+          label="Negativo"
           :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
@@ -33,7 +33,7 @@
         <linea-chart
           :chartData="arrHospitalizacion"
           :options="chartOptions"
-          :label="Hospitalizados"
+          label="Hospitalizados"
           :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
@@ -44,7 +44,7 @@
         <linea-chart
           :chartData="arrEnUsiActualmente"
           :options="chartOptions"
-          :label="inIcuCurrently"
+          label="EN USI"
           :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
@@ -55,7 +55,7 @@
         <linea-chart
           :chartData="arrOnVentilador"
           :options="chartOptions"
-          :label="onVentilatorCurrently"
+          label="reportados"
           :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
@@ -66,7 +66,7 @@
         <linea-chart
           :chartData="arrMuertes"
           :options="chartOptions"
-          :label="death"
+          label="Muertos"
           :chartColors="positiveChartColors"
         ></linea-chart>
       </div>
