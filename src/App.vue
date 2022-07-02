@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 p-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 p-4">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">INICIO</router-link>
         <button
@@ -15,7 +15,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav ">
             <li class="nav-item">
                <router-link class="nav-link active" aria-current="page" to="/">muertes</router-link>
             </li>
