@@ -23,7 +23,13 @@ const routes = [{
         name: 'api',
         component: () =>
             import ( /* webpackChunkName: "api" */ '../views/ApiView.vue')
-    }
+    },
+    {
+        path: '/javascript',
+        name: 'javascript',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Javascript.vue')
+    },
 
 ]
 
