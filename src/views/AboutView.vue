@@ -1,19 +1,12 @@
 <template>
-  <div class="container">
-    <div class="card col-md-8">
-      <Bar
-        :chart-options="chartOptions"
-        :chart-data="chartData"
-        :chart-id="chartId"
-        :dataset-id-key="datasetIdKey"
-        :plugins="plugins"
-        :css-classes="cssClasses"
-        :styles="styles"
-        :width="width"
-        :height="height"
-      />
+<div class="container">
+  <div class="row mt-5" v-if="arrPositivo.length > 0">
+    <div class="col">
+      <h2>positivo</h2>
+      <linea-chart :chartData="arrPositivo" :options="chartOptions" :label="positive" ></linea-chart>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -21,6 +14,10 @@ import axios from "axios";
 import moment from "moment";
 // import { Bar } from "vue-chartjs";
 import { Bar } from "vue-chartjs/legacy";
+
+import LineaChart from "./LineaChart.vue";
+//registrar todos los elementos
+import 'chart.js/auto'
 import {
   Chart as ChartJS,
   Title,
@@ -29,6 +26,7 @@ import {
   BarElement,
   CategoryScale,
   LinearScale,
+  PointElement,
 } from "chart.js";
 
 ChartJS.register(
@@ -37,42 +35,13 @@ ChartJS.register(
   Legend,
   BarElement,
   CategoryScale,
-  LinearScale
+  LinearScale,
+  PointElement,
 );
 
 export default {
   name: "BarChart",
-  components: { Bar },
-  props: {
-    chartId: {
-      type: String,
-      default: "bar-chart",
-    },
-    datasetIdKey: {
-      type: String,
-      default: "label",
-    },
-    width: {
-      type: Number,
-      default: 400,
-    },
-    height: {
-      type: Number,
-      default: 400,
-    },
-    cssClasses: {
-      default: "",
-      type: String,
-    },
-    styles: {
-      type: Object,
-      default: () => {},
-    },
-    plugins: {
-      type: Object,
-      default: () => {},
-    },
-  },
+  components: { Bar, LineaChart },
   data() {
     return {
       arrPositivo: [],
@@ -81,12 +50,9 @@ export default {
       arrEnUsiActualmente: [],
       arrOnVentilador: [],
       arrMuertes: [],
-      chartData: {
-        labels: ["Enero", "Febrero", "Marzo"],
-        datasets: [{ data: [40, 20, 12], backgroundColor: "#1B35DA" }],
-      },
-      chartOptions: {
+      chartOptions: { 
         responsive: true,
+        maintainAspectRatio: false
       },
     };
   },
@@ -113,7 +79,7 @@ export default {
               this.arrOnVentilador.push({ date, total: onVentilatorCurrently });
               this.arrMuertes.push({ date, total: death });
 
-              console.log(this.arrNegativo);
+              //console.log(this.arrMuertes);
 
           })
         } catch (error) {
