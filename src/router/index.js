@@ -30,6 +30,12 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "api" */ '../views/Javascript.vue')
     },
+    {
+        path: '/areapolar',
+        name: 'areapolar',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/AreaPolar.vue')
+    },
 
 ]
 
