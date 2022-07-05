@@ -1,0 +1,7 @@
+https://www.youtube.com/watch?v=cUSfL6MBmlY&ab_channel=DiligentDev
+
+https://api.covidtracking.com/v1/us/daily.json  (api que estoy utilizando)
+https://api.covidtracking.com/v1/states/info.json
+https://api.covidtracking.com/v1/states/ca/info.json
+https://covidtracking.com/data/api
+https://jsonplaceholder.typicode.com/
