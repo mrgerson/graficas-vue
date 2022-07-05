@@ -1,17 +1,75 @@
 <template>
   <div class="container">
-    <div class="card col-md-8">
-      <Bar
-        :chart-options="chartOptions"
-        :chart-data="chartData"
-        :chart-id="chartId"
-        :dataset-id-key="datasetIdKey"
-        :plugins="plugins"
-        :css-classes="cssClasses"
-        :styles="styles"
-        :width="width"
-        :height="height"
-      />
+    <div class="row">
+      <div class="col text-center">
+        <h1>COVID 19 vizualización</h1>
+      </div>
+    </div>
+    <div class="row mt-5" v-if="arrPositivo.length > 0">
+      <div class="col">
+        <h2>casos positivo</h2>
+        <linea-chart
+          :chartData="arrPositivo"
+          :options="chartOptions"
+          label="Positivo"
+          :chartColors="positiveChartColors"
+        ></linea-chart>
+      </div>
+    </div>
+    <div class="row mt-5" v-if="arrNegativo.length > 0">
+      <div class="col">
+        <h2>casos negativo</h2>
+        <linea-chart
+          :chartData="arrNegativo"
+          :options="chartOptions"
+          label="Negativo"
+          :chartColors="positiveChartColors"
+        ></linea-chart>
+      </div>
+    </div>
+    <div class="row mt-5" v-if="arrHospitalizacion.length > 0">
+      <div class="col">
+        <h2>Hospitalizados</h2>
+        <linea-chart
+          :chartData="arrHospitalizacion"
+          :options="chartOptions"
+          label="Hospitalizados"
+          :chartColors="positiveChartColors"
+        ></linea-chart>
+      </div>
+    </div>
+    <div class="row mt-5" v-if="arrEnUsiActualmente.length > 0">
+      <div class="col">
+        <h2>En USI</h2>
+        <linea-chart
+          :chartData="arrEnUsiActualmente"
+          :options="chartOptions"
+          label="EN USI"
+          :chartColors="positiveChartColors"
+        ></linea-chart>
+      </div>
+    </div>
+    <div class="row mt-5" v-if="arrOnVentilador.length > 0">
+      <div class="col">
+        <h2>Casos reportados</h2>
+        <linea-chart
+          :chartData="arrOnVentilador"
+          :options="chartOptions"
+          label="reportados"
+          :chartColors="positiveChartColors"
+        ></linea-chart>
+      </div>
+    </div>
+    <div class="row mt-5" v-if="arrMuertes.length > 0">
+      <div class="col">
+        <h2>Muertes</h2>
+        <linea-chart
+          :chartData="arrMuertes"
+          :options="chartOptions"
+          label="Muertos"
+          :chartColors="positiveChartColors"
+        ></linea-chart>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +79,10 @@ import axios from "axios";
 import moment from "moment";
 // import { Bar } from "vue-chartjs";
 import { Bar } from "vue-chartjs/legacy";
+
+import LineaChart from "./LineaChart.vue";
+//registrar todos los elementos
+import "chart.js/auto";
 import {
   Chart as ChartJS,
   Title,
@@ -29,6 +91,7 @@ import {
   BarElement,
   CategoryScale,
   LinearScale,
+  PointElement,
 } from "chart.js";
 
 ChartJS.register(
@@ -37,88 +100,63 @@ ChartJS.register(
   Legend,
   BarElement,
   CategoryScale,
-  LinearScale
+  LinearScale,
+  PointElement
 );
 
 export default {
   name: "BarChart",
-  components: { Bar },
-  props: {
-    chartId: {
-      type: String,
-      default: "bar-chart",
-    },
-    datasetIdKey: {
-      type: String,
-      default: "label",
-    },
-    width: {
-      type: Number,
-      default: 400,
-    },
-    height: {
-      type: Number,
-      default: 400,
-    },
-    cssClasses: {
-      default: "",
-      type: String,
-    },
-    styles: {
-      type: Object,
-      default: () => {},
-    },
-    plugins: {
-      type: Object,
-      default: () => {},
-    },
-  },
+  components: { Bar, LineaChart },
   data() {
     return {
+      positiveChartColors: {
+        borderColor: "#077187",
+        pointBorderColor: "#0E1428",
+        pointBackgroundColor: "#372772",
+        BackgroundColor: "#74A57F",
+      },
       arrPositivo: [],
       arrNegativo: [],
       arrHospitalizacion: [],
       arrEnUsiActualmente: [],
       arrOnVentilador: [],
       arrMuertes: [],
-      chartData: {
-        labels: ["Enero", "Febrero", "Marzo"],
-        datasets: [{ data: [40, 20, 12], backgroundColor: "#1B35DA" }],
-      },
       chartOptions: {
         responsive: true,
+        maintainAspectRatio: false,
       },
     };
   },
   async created() {
-            //console.log(response.data);
-        try {
-          const res = await axios.get("https://api.covidtracking.com/v1/us/daily.json")
-          await res.data.forEach(d => {
-              const date = moment(d.date, "YYYYMMDD").format("MM/DD/YY");
+    //console.log(response.data);
+    try {
+      const res = await axios.get(
+        "https://api.covidtracking.com/v1/us/daily.json"
+      );
+      await res.data.forEach((d) => {
+        const date = moment(d.date, "YYYYMMDD").format("MM/DD/YY");
 
-              const {
-                positive,
-                negative,
-                hospitalizedCurrently,
-                inIcuCurrently,
-                onVentilatorCurrently,
-                death,
-              } = d;
-            
-              this.arrPositivo.push({ date, total: positive });
-              this.arrNegativo.push({ date, total: negative });
-              this.arrHospitalizacion.push({ date, total: hospitalizedCurrently });
-              this.arrEnUsiActualmente.push({ date, total: inIcuCurrently });
-              this.arrOnVentilador.push({ date, total: onVentilatorCurrently });
-              this.arrMuertes.push({ date, total: death });
+        const {
+          positive,
+          negative,
+          hospitalizedCurrently,
+          inIcuCurrently,
+          onVentilatorCurrently,
+          death,
+        } = d;
 
-              console.log(this.arrNegativo);
+        this.arrPositivo.push({ date, total: positive });
+        this.arrNegativo.push({ date, total: negative });
+        this.arrHospitalizacion.push({ date, total: hospitalizedCurrently });
+        this.arrEnUsiActualmente.push({ date, total: inIcuCurrently });
+        this.arrOnVentilador.push({ date, total: onVentilatorCurrently });
+        this.arrMuertes.push({ date, total: death });
 
-          })
-        } catch (error) {
-          console.log(error)
-        }
+        //console.log(this.arrMuertes);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 </script>

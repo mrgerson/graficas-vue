@@ -23,7 +23,43 @@ const routes = [{
         name: 'api',
         component: () =>
             import ( /* webpackChunkName: "api" */ '../views/ApiView.vue')
-    }
+    },
+    {
+        path: '/javascript',
+        name: 'javascript',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Javascript.vue')
+    },
+    {
+        path: '/areapolar',
+        name: 'areapolar',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/AreaPolar.vue')
+    },
+    {
+        path: '/barra',
+        name: 'barra',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Bar.vue')
+    },
+    {
+        path: '/burbuja',
+        name: 'burbuja',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Bubble.vue')
+    },
+    {
+        path: '/radar',
+        name: 'radar',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Radar.vue')
+    },
+    {
+        path: '/dispersion',
+        name: 'dispersion',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Scatter.vue')
+    },
 
 ]
 
