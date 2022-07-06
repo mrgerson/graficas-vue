@@ -43,6 +43,9 @@
              <li class="nav-item">
                <router-link class="nav-link active" aria-current="page" to="/dispersion">Dispersión</router-link>
             </li>
+             <li class="nav-item">
+               <router-link class="nav-link active" aria-current="page" to="/todas">Principal</router-link>
+            </li>
           </ul>
         </div>
       </div>

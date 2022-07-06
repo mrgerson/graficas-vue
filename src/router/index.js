@@ -60,6 +60,12 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "api" */ '../views/Scatter.vue')
     },
+    {
+        path: '/todas',
+        name: 'todas',
+        component: () =>
+            import ( /* webpackChunkName: "api" */ '../views/Principal.vue')
+    },
 
 ]
 
