@@ -53,7 +53,7 @@ export default {
         borderColor: "#077187",
         pointBorderColor: "#0E1428",
         pointBackgroundColor: "#372772",
-        BackgroundColor: "#74A57F",
+        BackgroundColor: "#00D8FF",
       },
       arrPositivo: [],
       arrNegativo: [],
