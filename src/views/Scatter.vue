@@ -77,7 +77,7 @@ export default {
         datasets: [
           {
             label: 'Scatter Dataset 1',
-            fill: false,
+            fill: true,
             borderColor: '#f87979',
             backgroundColor: '#f87979',
             data: [
@@ -105,7 +105,7 @@ export default {
           },
           {
             label: 'Scatter Dataset 2',
-            fill: false,
+            fill: true,
             borderColor: '#7acbf9',
             backgroundColor: '#7acbf9',
             data: [
